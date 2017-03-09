@@ -20,7 +20,7 @@ import javax.jws.WebService;
         portName = "CalculatorPort", serviceName = "CalculatorService"
         ,targetNamespace = "http://www.onlinecalc.com")
 /**
- *By Default the "portType" name in WSDL is picked up from the name 
+ * By Default the "portType" name in WSDL is picked up from the name 
  * of the class but as now we've used "name" property in webservice annotation
  * the "portType name" will be picked up from there.
  * "portType name=CalculatorOnRequests"
@@ -29,6 +29,11 @@ public class OperationCatalog {
    
     OperationCatalogServiceImpl catalogservice = new OperationCatalogServiceImpl();
     
+    /** 
+     * it's not even mandatory to mark method with @webMethod
+     * because the methods written under web service are implicitly
+     * considered as Web method
+     */
     @WebMethod
     public List<String> getProductCategories(){
         return catalogservice.getProductCategories();
@@ -39,7 +44,7 @@ public class OperationCatalog {
         return catalogservice.getProducts(productType);
     }
     
-    @WebMethod
+    @WebMethod(exclude = true)
     public List<String> getLegitimateOperations(){
         return catalogservice.getLegitimateOperations();
     }
