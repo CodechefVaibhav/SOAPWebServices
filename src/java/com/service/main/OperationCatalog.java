@@ -5,51 +5,50 @@
  */
 package com.service.main;
 
-import com.service.main.impl.OperationCatalogServiceImpl;
-import java.util.ArrayList;
+import com.service.main.entity.Component;
+import com.service.main.impl.OperationCatalogDataService;
 import java.util.List;
-import javax.inject.Inject;
-import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 /**
  *
  * @author admin
  */
-@WebService(name = "CalculatorOnRequest",
-        portName = "CalculatorPort", serviceName = "CalculatorService"
-        ,targetNamespace = "http://www.onlinecalc.com")
+
+@WebService(serviceName = "CalculatorService", portName = "CalculatorPort",
+        endpointInterface = "com.service.main.OperationCatalogServiceImpl")
 /**
- * By Default the "portType" name in WSDL is picked up from the name 
- * of the class but as now we've used "name" property in webservice annotation
- * the "portType name" will be picked up from there.
- * "portType name=CalculatorOnRequests"
+ * "serviceName" defines the name of the web service.
+ * 
+ * "endpointInterface" is the binding to the actual service end point interface
+ * defined
  */
-public class OperationCatalog {
+public class OperationCatalog implements OperationCatalogServiceImpl {
    
-    OperationCatalogServiceImpl catalogservice = new OperationCatalogServiceImpl();
-    
-    /** 
-     * it's not even mandatory to mark method with @webMethod
-     * because the methods written under web service are implicitly
-     * considered as Web method
-     */
-    @WebMethod
+    OperationCatalogDataService catalogservice = new OperationCatalogDataService();
+
+    @Override
     public List<String> getProductCategories(){
         return catalogservice.getProductCategories();
     }
     
-    @WebMethod(action="fetch_category", operationName = "fetchCategory")
+    @Override
     public List<String> getProducts(String productType){
-        return catalogservice.getProducts(productType);
+        return catalogservice.getProductsAsString(productType);
     }
     
-    @WebMethod(exclude = true)
+    @Override
+    public List<Component> getProductsAsComponents(String productType){
+        return catalogservice.getProductsAsComponents(productType);
+    }
+    
+    
+    @Override
     public List<String> getLegitimateOperations(){
         return catalogservice.getLegitimateOperations();
     }
     
-    @WebMethod
+    @Override
     public int performOperation(int operationID, List<Integer> numbers){
         return catalogservice.performOperation(operationID,numbers);
     }

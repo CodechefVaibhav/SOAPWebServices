@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.service.main;
 
 import javax.jws.WebMethod;
@@ -17,9 +12,11 @@ import javax.jws.soap.SOAPBinding;
  */
 @WebService
 /**
- * RPC/document are inter-changable, Document generates the "types" into
+ * RPC/document are inter-changeable, Document generates the "types" into
  * a separate url whereas the RPC writes the "types : return or request type"
  * within the same WSDL file
+ * 
+ * BINDING STYLE : DOCUMENT is by default
  */
 @SOAPBinding(style = SOAPBinding.Style.RPC)
 public class CollegeDetails {
