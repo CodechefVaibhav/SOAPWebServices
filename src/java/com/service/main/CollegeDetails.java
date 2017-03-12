@@ -66,4 +66,9 @@ public class CollegeDetails {
         
         return detail;
     }
+    
+    @WebMethod(exclude = true)
+    public String displayResult(){
+        return "dummy for exclude";
+    }
 }
