@@ -1,0 +1,78 @@
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<!--
+ Published by JAX-WS RI (http://jax-ws.java.net). RI's version is Metro/2.3.1-b419 (branches/2.3.1.x-7937; 2014-08-04T08:11:03+0000) JAXWS-RI/2.2.10-b140803.1500 JAXWS-API/2.2.11 JAXB-RI/2.2.10-b140802.1033 JAXB-API/2.2.12-b140109.1041 svn-revision#unknown. 
+-->
+<xs:schema xmlns:tns="http://www.onlinecalc.com" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://www.onlinecalc.com">
+<xs:element name="CarComponents" type="tns:component"/>
+<xs:element name="fetchCategory" type="tns:fetchCategory"/>
+<xs:element name="fetchCategoryResponse" type="tns:fetchCategoryResponse"/>
+<xs:element name="getLegitimateOperations" type="tns:getLegitimateOperations"/>
+<xs:element name="getLegitimateOperationsResponse" type="tns:getLegitimateOperationsResponse"/>
+<xs:element name="getProductCategories" type="tns:getProductCategories"/>
+<xs:element name="getProductCategoriesResponse" type="tns:getProductCategoriesResponse"/>
+<xs:element name="getProductsAsComponents" type="tns:getProductsAsComponents"/>
+<xs:element name="getProductsAsComponentsResponse" type="tns:getProductsAsComponentsResponse"/>
+<xs:element name="performOperation" type="tns:performOperation"/>
+<xs:element name="performOperationResponse" type="tns:performOperationResponse"/>
+<xs:complexType name="getProductsAsComponents">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getProductsAsComponentsResponse">
+<xs:sequence>
+<xs:element name="return" type="tns:component" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="component">
+<xs:sequence>
+<xs:element name="ComponentName" type="xs:string" minOccurs="0"/>
+<xs:element name="ComponentPrice" type="xs:float" minOccurs="0"/>
+<xs:element name="ComponentAvailability" type="xs:boolean" minOccurs="0"/>
+<xs:element name="BodyDescription" type="tns:Body" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="Body">
+<xs:sequence>
+<xs:element name="noOfDoors" type="xs:int" default="2" minOccurs="0"/>
+<xs:element name="type" type="xs:string" default="Hatchback" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="performOperation">
+<xs:sequence>
+<xs:element name="arg0" type="xs:int"/>
+<xs:element name="arg1" type="xs:int" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="performOperationResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:int"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getLegitimateOperations">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getLegitimateOperationsResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="getProductCategories">
+<xs:sequence/>
+</xs:complexType>
+<xs:complexType name="getProductCategoriesResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="fetchCategory">
+<xs:sequence>
+<xs:element name="arg0" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="fetchCategoryResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
