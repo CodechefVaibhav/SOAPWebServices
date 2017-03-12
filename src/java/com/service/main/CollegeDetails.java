@@ -1,5 +1,6 @@
 package com.service.main;
 
+import com.service.main.exception.InvalidPropertyException;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
@@ -43,14 +44,24 @@ public class CollegeDetails {
      */
     @WebMethod
     @WebResult(partName = "propertyReturnName")
-    public String getCollegeDetail(@WebParam(partName = "propertyCallName") String property){
+    public String getCollegeDetail(@WebParam(partName = "propertyCallName") String property) throws InvalidPropertyException{
+        
         String detail = "not found";
+       
         switch(property){
             case "noofstudents" : detail = "1000";
                 break;
             case "nameofcollege" : detail = "XYZ college";
                 break;
-            default :;
+            default :
+                /**
+                 * think about the invalid string send as parameter to this method
+                 * then how that exception would be handled. Here we'll introduce 
+                 * the exception
+                 * handling.
+                 */
+                throw new InvalidPropertyException("Invalid Property","Invalid property, property not found");
+               
         }
         
         return detail;
